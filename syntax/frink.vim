@@ -66,6 +66,10 @@ let s:units = [
 \   "are",
 \   "litre", "litres", "liter", "liters", "oldliter", "oldliters", "l", "L",
 \
+\   "cal", "cals", "calorie", "calories", "thermie", "thermies", "Calorie", "Calories",
+\   "Btu", "Btus", "btu", "btus",
+\   "eV", "eVs",
+\
 \   "angstrom", "Å", "Å",
 \   "xunit", "xunits", "siegbahn", "siegbahns",
 \   "fermi", "fermis", "barn", "barns", "shed", "sheds",
@@ -182,7 +186,7 @@ syn cluster frinkOperator add=frinkOperatorRegexMatch,frinkOperatorIndex,frinkOp
 
 " Constants
 " TODO: all below can be modified by prefixes, should they be moved to units?
-syn keyword 	frinkConstant		pi i e c light lightspeed h ℎ hbar ℏ
+syn keyword     frinkConstant           pi i e c light lightspeed h ℎ hbar ℏ
 syn keyword     frinkConstant           au ua astronomicalunit
 syn keyword     frinkConstant           G gravitationalconstant
 syn keyword     frinkConstant           mu0 magneticconstant permeabilityofvacuum
@@ -192,20 +196,20 @@ syn keyword     frinkConstant           energy elementarycharge electroncharge p
 syn keyword     frinkConstant           neutroncharge upquarkcharge downquarkcharge
 
 " Keywords
-syn keyword     frinkKeywordBuiltinType 	array boolean date dict set regexp subst string unit interval
-syn keyword     frinkKeywordClass 		class interface
-syn keyword     frinkKeywordVar 		var is class new
-syn keyword	frinkKeywordMem			new
-syn keyword	frinkKeywordEval		eval unsafeEval
+syn keyword     frinkKeywordBuiltinType         array boolean date dict set regexp subst string Unit interval range
+syn keyword     frinkKeywordClass               class interface
+syn keyword     frinkKeywordVar                 var is class
+syn keyword     frinkKeywordMem                 new
+syn keyword     frinkKeywordEval                eval unsafeEval
 
-syn keyword	frinkKeywordControl             while do next break
-syn keyword 	frinkKeywordControl 		for to step multifor
-syn keyword 	frinkKeywordControl 		try finally
+syn keyword     frinkKeywordControl             while do next break
+syn keyword     frinkKeywordControl             for to step multifor
+syn keyword     frinkKeywordControl             try finally
 
-syn keyword 	frinkKeywordCondition		if then else
+syn keyword     frinkKeywordCondition           if then else
 
-syn cluster frinkKeyword contains=frinkKeywordBuiltinType,frinkKeywordClass,frinkKeywordVar,frinkKeywordMem
-syn cluster frinkKeyword add=frinkKeywordEval,frinkKeywordControl
+syn cluster     frinkKeyword contains=frinkKeywordBuiltinType,frinkKeywordClass,frinkKeywordVar,frinkKeywordMem
+syn cluster     frinkKeyword add=frinkKeywordEval,frinkKeywordControl
 "TODO:
 " Builtin types and functions for them
 "
@@ -217,17 +221,17 @@ syn cluster frinkKeyword add=frinkKeywordEval,frinkKeywordControl
 "
 " sort lexicalSort select remove map split join zip
 "
-" println input now
+" print println input now
 "
-" loop labels -- OUTERLOOP:
+syn match   frinkLabel          /\v^\s*\w+:/me=e-1
 
-syn region frinkBlock		start="{" end="}" transparent fold
-syn region frinkParen		start="(" end=")" transparent
-syn region frinkArray		start="\[" end="\]" transparent
+syn region  frinkBlock          start="{" end="}" transparent fold
+syn region  frinkParen          start="(" end=")" transparent
+syn region  frinkArray          start="\[" end="\]" transparent
 
-" TODO: steal regex syntax from somewhere
-syn region frinkRegex		start="%r\/" skip="[^\\]\\/" end="\/(i|g)+" keepend
-syn region frinkRegexSub	start="%r\/" skip="[^\\]\\/" end="\/(i|g|e)+" keepend
+" TODO: regex syntax
+syn region  frinkRegex          start="%r\/" skip="[^\\]\\/" end="\/(i|g)+" keepend
+syn region  frinkRegexSub       start="%r\/" skip="[^\\]\\/" end="\/(i|g|e)+" keepend
 
 syn region  frinkComment        start="\/\*" end="\*\/" contains=@frinkCommentGrp
 syn region  frinkComment        start="//" end="$" keepend contains=@frinkCommentGrp
@@ -267,8 +271,15 @@ if version >= 508 || !exists("did_frink_syn_inits")
     HiLink frinkOperatorComp            Operator
     HiLink frinkOperatorIntervalComp    Operator
 
-    HiLink frinkKeyword                 Keyword
+    HiLink frinkKeywordBuiltinType      Keyword
+    HiLink frinkKeywordControl          Keyword
+    HiLink frinkKeywordClass            Keyword
+    HiLink frinkKeywordVar              Keyword
+    HiLink frinkKeywordMem              Keyword
+    HiLink frinkKeywordEval             Keyword
     HiLink frinkKeywordCondition        Conditional
+
+    HiLink frinkLabel                   Label
 
     delcommand HiLink
 endif
