@@ -20,7 +20,7 @@ let s:oneletter_prefixes = [
 " TODO: these will be prefixed, and frink will accept as valid, even when it might not make sense.
 " Is `deciweek` a thing? Should it be?
 let s:units = [
-\   "meter", "meters", "metre", "metres", "m",
+\   "meter", "meters", "metre", "metres", "m", "mil",
 \   "gram", "grams", "gm", "gms", "g",
 \   "ampere", "amperes", "amp", "amps", "A",
 \   "kelvin", "kelvins", "K",
@@ -205,6 +205,7 @@ syn keyword     frinkKeywordEval                eval unsafeEval
 syn keyword     frinkKeywordControl             while do next break
 syn keyword     frinkKeywordControl             for to step multifor
 syn keyword     frinkKeywordControl             try finally
+syn keyword     frinkKeywordControl             return
 
 syn keyword     frinkKeywordCondition           if then else
 
