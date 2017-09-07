@@ -65,10 +65,13 @@ let s:units = [
 \   "cc",
 \   "are",
 \   "litre", "litres", "liter", "liters", "oldliter", "oldliters", "l", "L",
+\   "gallon", "gallons", "floz", "keg", "kegs", "case", "cases",
 \
 \   "cal", "cals", "calorie", "calories", "thermie", "thermies", "Calorie", "Calories",
 \   "Btu", "Btus", "btu", "btus",
 \   "eV", "eVs",
+\
+\   "coal", "oil", "TNT", "PETN",
 \
 \   "angstrom", "Å", "Å",
 \   "xunit", "xunits", "siegbahn", "siegbahns",
@@ -99,20 +102,20 @@ endfor
 unlet s:units s:prefixes s:oneletter_prefixes
 
 " Don't prefix:
-syn keyword     frinkUnit   hectare, uF
+syn keyword     frinkUnit   hectare, uF, fl
 
 " Literals
 " TODO: can be plural
 syn keyword     frinkInt    one two three four five six seven eight nine
 syn keyword     frinkInt    ten twenty thirty fourty fifty sixty seventy ninety
-syn keyword     frinkInt    hundred million thousand billion trillion
+syn keyword     frinkInt    hundred hundreds million millions thousand thousands billion billions trillion trillions
 syn keyword     frinkInt    quadrillion quintillion sextillion septillion octillion nonillion noventillion
 syn keyword     frinkInt    decillion undecillion duodecillion tredecillion quattuordecillion quindecillion
 syn keyword     frinkInt    sexdecillion septendecillion octodecillion novemdecillion
 syn keyword     frinkInt    milliard billiard trilliard
 
-syn keyword     frinkInt    vigintillion centillion googol
-syn keyword     frinkInt    dozen score
+syn keyword     frinkInt    vigintillion centillion googol googols
+syn keyword     frinkInt    dozen dozens score scores
 
 syn keyword     frinkInt    lakh lac crore
 
