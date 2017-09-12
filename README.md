@@ -22,6 +22,10 @@ Vim syntax highlighting for [Frink](https://frinklang.org)
 
 I use [vim-pipe](https://github.com/krisajenkins/vim-pipe) to run code semi-interactively
 
+```vim
+autocmd FileType frink let b:vimpipe_command="TMPFILE=`mktemp`; ( cat >$TMPFILE ) && frink $TMPFILE"
+```
+
 Ideally a more robust system where the user could run code then drop into interactive mode or pass frink
 the file name.
 
@@ -31,3 +35,4 @@ the file name.
 - Configurable highlighting of {units,functions}
 - indentation.
 - Compile and run from file.
+- Java introspection?
